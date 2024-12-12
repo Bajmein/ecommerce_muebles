@@ -1,7 +1,10 @@
 from django.urls import path
 from muebles import views
+from django.contrib import admin
+
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('registro/', views.registro, name='registro'),
     path('inicio_sesion/', views.inicio_sesion, name='inicio_sesion'),
