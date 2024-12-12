@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'custom.css' %}">
+    <title>e-commerce muebles</title>
+</head>
+<body>
+    <nav class="navegador-1">
+        {% if not user.is_authenticated %}
+            <div id="nav-arriba">
+                <a href="{% url 'inicio_sesion' %}">Iniciar sesión</a>
+                <a href="{% url 'registro' %}">Registro</a>
+            </div>
+        {% else %}
+            <div id="nav-arriba">
+                <a href="{% url 'ver_carrito' %}">Ver carrito</a>
+                <a href="{% url 'historial_compras' %}">Historial de compras</a>
+                <a href="{% url 'cerrar_sesion' %}">Cerrar sesión</a>
+            </div>
+        {% endif %}
+    </nav>
+    <nav class="navegador-2">
+        <div id="nav-abajo">
+            <a href="{% url 'home' %}">Pagina principal</a>
+            <a href="{% url 'listar_categorias' %}">Ver muebles</a>
+            <section id="buscador">
+                <form method="GET" action="{% url 'buscar_muebles' %}">
+                    <input type="text" name="q" placeholder="Buscar muebles..." required>
+                    <button type="submit">Buscar</button>
+                </form>
+            </section>
+        </div>
+    </nav>
+
+    
+
+    <section id="contenedor">
+        {% block content %}
+        {% endblock %}
+    </section>
+    
+    <section id="mensaje">
+        {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <p class="{{ message.tags }}">{{ message }}</p>
+                    {% endfor %}
+                </ul>
+        {% endif %}
+    </section>
+    <section id="footer"></section>
+</body>
+</html>

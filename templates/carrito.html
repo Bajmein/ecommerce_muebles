@@ -1,0 +1,40 @@
+{% extends 'home.html' %}
+{% block content %}
+    <section id="carrito">
+        <h2>Carrito de Compras</h2>
+        <div id="tabla-carrito">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Imagen</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Subtotal</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                    <tr>
+                        <td><img src="{{ item.imagen }}" alt="{{ item.nombre }}" width="50"></td>
+                        <td>{{ item.nombre }}</td>
+                        <td>${{ item.precio }}</td>
+                        <td>{{ item.cantidad }}</td>
+                        <td>${{ item.subtotal|floatformat:2 }}</td>
+                        <td>
+                            <a href="{% url 'eliminar_del_carrito' item.id %}">Eliminar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            </div>
+        <p>Total: <strong>${{ total }}</strong></p>
+        <form method="POST" action="{% url 'procesar_pago' %}">
+            {% csrf_token %}
+            <button type="submit">Pagar</button>
+        </form>
+        <a href="{% url 'listar_categorias' %}">Continuar Comprando</a>
+    </section>
+{% endblock %}

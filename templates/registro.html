@@ -1,0 +1,22 @@
+{% extends 'home.html' %}
+{% block content %}
+    <div id="registro-usuario">
+        <h1>Registro de Usuario</h1>
+        <form method="post">
+            {% csrf_token %}
+            <p>Usuario</p>
+            {{ form.username }}
+            <br>
+            <p>Email</p>
+            {{ form.email }}
+            <br>
+            <p>Contraseña (8 caracteres min.)</p>
+            {{ form.password1 }}
+            <br>
+            <p>Confirmar contraseña</p>
+            {{ form.password2 }}
+            <br>
+            <button type="submit">Registrarse</button>
+        </form>
+    </div>
+{% endblock %}

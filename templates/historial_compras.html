@@ -1,0 +1,15 @@
+{% extends 'home.html' %}
+{% block content %}
+<div id="historial-compras">
+    <h1>Historial de Compras</h1>
+    {% if compras %}
+        {% for compra in compras %}
+            {% for item in compra.items.all %}
+                <pre>{{ item.nombre }} - {{ item.cantidad }} x ${{ item.precio }} = <strong>${{ item.subtotal }}</strong>   {{ compra.fecha }}</pre>
+            {% endfor %}
+        {% endfor %}
+    {% else %}
+        <p>No tienes compras registradas.</p>
+    {% endif %}
+</div>
+{% endblock %}

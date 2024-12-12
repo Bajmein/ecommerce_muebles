@@ -1,0 +1,16 @@
+{% extends 'home.html' %}
+{% block content %}
+    <div id="inicio-sesion">
+        <h1>Iniciar Sesión</h1>
+        <form method="post" id="formulario-inicio-sesion">
+            {% csrf_token %}
+            <p>Usuario</p>
+            {{ form.username }}
+            <br>
+            <p>Contraseña</p>
+            {{ form.password }}
+            <br>
+            <button type="submit">Iniciar Sesión</button>
+        </form>
+    </div>
+{% endblock %}

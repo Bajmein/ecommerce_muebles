@@ -1,0 +1,18 @@
+{% extends 'home.html' %}
+{% block content %}
+    <section id="contenido-muebles-categoria">
+        <h1>{{ categoria|safe }}</h1>
+        <div id="muebles">
+            {% for mueble in muebles %}
+            <div class="mueble">
+                <a href="{% url 'detalle_mueble_por_categoria' categoria mueble.nombre %}">
+                    <img src="{{ mueble.imagen }}" alt="{{ mueble.nombre|safe }}" width="100%">
+                    <p>{{ mueble.nombre|safe }}</p>
+                    <p>Precio: ${{ mueble.precio }}</p>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        <a href="{% url 'listar_categorias' %}">Volver</a>
+    </section>
+{% endblock %}

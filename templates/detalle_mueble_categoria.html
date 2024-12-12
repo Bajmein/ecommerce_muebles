@@ -1,0 +1,37 @@
+{% extends 'home.html' %}
+{% block content %}
+    <div id="detalles-muebles">
+        <h1>{{ mueble.nombre }}</h1>
+        <div id="detalle-mueble-seleccion">
+            <img src="{{ mueble.imagen }}" alt="{{ mueble.nombre }}" width="220">
+            <p>Precio: ${{ mueble.precio }}</p>
+    
+            <form method="POST" action="{% url 'agregar_al_carrito' categoria mueble.nombre %}">
+                {% csrf_token %}
+                <button type="submit">Agregar al carrito</button>
+            </form>
+        </div>
+    
+        <div id="recomendaciones-similares-contenedor">
+            <h2>Recomendaciones similares</h2>  
+            <div id="recomendaciones-similares">
+                {% for similar in similares %}
+                    <div class="recomendacion">
+                        <a href="{% url 'detalle_mueble_por_categoria' categoria similar.mueble.nombre %}">
+                            <img src="{{ similar.mueble.imagen }}" alt="{{ similar.mueble.nombre }}" width="120">
+                        </a>
+                        <p>Precio: ${{ similar.mueble.precio }}</p>
+                        
+                        <form method="POST" action="{% url 'agregar_al_carrito' categoria similar.mueble.nombre %}">
+                            {% csrf_token %}
+                            <button type="submit">Agregar al carrito</button>
+                        </form>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div id="volver-categorias">
+        <a href="{% url 'listar_categorias' %}">Volver a categorias</a>
+    </div>
+{% endblock %} 

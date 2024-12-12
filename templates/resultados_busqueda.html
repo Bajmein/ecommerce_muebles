@@ -1,0 +1,21 @@
+{% extends 'home.html' %}
+{% block content %}
+<section id="resultados-busqueda">
+    <h1>Resultados de búsqueda para: "{{ query }}"</h1>
+    {% if resultados %}
+        <div id="productos">
+            {% for resultado in resultados %}
+                <div class="producto">
+                    <a href="{% url 'detalle_mueble_por_categoria' resultado.categoria resultado.nombre %}">
+                        <img src="{{ resultado.imagen }}" alt="{{ resultado.nombre|safe }}" width="150">
+                        <p>{{ resultado.nombre|safe }}</p>
+                    </a>
+                    <p>Precio: ${{ resultado.precio }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No se encontraron resultados.</p>
+    {% endif %}
+</section>
+{% endblock %}
