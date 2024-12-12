@@ -22,7 +22,8 @@ def registro(request):
         form = RegistroForm(request.POST)
         if form.is_valid():
             usuario = form.save()
-            Carrito.objects.create(usuario=usuario)
+            if not Carrito.objects.filter(usuario=usuario).exists():
+                Carrito.objects.create(usuario=usuario)
             return redirect('inicio_sesion')
     else:
         form = RegistroForm()
@@ -90,14 +91,14 @@ def vectorizar_descripciones(muebles):
 
 
 def buscar_muebles_similares(consulta, muebles, mueble_id=None, n_resultados=3):
-    muebles_lista = list(muebles)  # Convertir a lista
+    muebles_lista = list(muebles)
     vectorizador, matriz_tfidf = vectorizar_descripciones(muebles_lista)
     consulta_vectorizada = vectorizador.transform([consulta])
     similitudes = cosine_similarity(consulta_vectorizada, matriz_tfidf)
     indices_similares = np.argsort(similitudes[0])[-n_resultados:][::-1]
     resultados = []
     for i in indices_similares:
-        mueble = muebles_lista[i]  # Asegúrate de manejar esto adecuadamente
+        mueble = muebles_lista[i]
         if mueble_id is not None and mueble.nombre == mueble_id:
             continue
         resultados.append({"mueble": mueble})
@@ -148,16 +149,15 @@ def agregar_al_carrito(request, categoria, producto_nombre):
     return redirect('listar_muebles_por_categoria', categoria=categoria)
 
 
+@login_required
 def ver_carrito(request):
-    if not request.user.is_authenticated:
-        return redirect('inicio_sesion')
-
-    carrito = request.user.carrito
+    carrito, _ = Carrito.objects.get_or_create(usuario=request.user)
     items = carrito.items.all()
     total = sum(item.subtotal() for item in items)
     return render(request, 'carrito.html', {'items': items, 'total': total})
 
 
+@login_required
 def eliminar_del_carrito(request, item_id):
     if not request.user.is_authenticated:
         return redirect('inicio_sesion')

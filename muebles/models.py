@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.auth.models import User
 
 
 class Categoria(models.Model):
@@ -20,6 +21,7 @@ class Producto(models.Model):
 
     def __str__(self):
         return self.nombre
+
 
 
 class Carrito(models.Model):

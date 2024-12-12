@@ -1,23 +1,42 @@
 html, *{
     margin: unset;
 }
+
+#contenedor-imagen-home{
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+
+    & img{
+        flex-grow: 1;
+    }
+}
+
 .navegador-1{
     background: gray;
     height: 5vh;
     display: flex;
+    justify-content: end;
     & a{
+        display: flex;
+        justify-content: center;
+        align-items: center;
         color: white;
         text-decoration: none;
-        transition: .3s;
+        transition: .5s;
+        height: 100%;
+        width: 8vw;
+        text-align: center;
     }
     & a:hover{
-        color: #423f3f;
+        background-color: #4e4e4e;
     }
 }
 
 .navegador-2{
     background: whitesmoke;
-    height: 8vh;
+    height: 10vh;
     display: flex;
 }
 
@@ -30,11 +49,16 @@ html, *{
     height: 100%;
     & a{
         text-decoration: none;
-        color: black;
+        color: dimgrey;
         transition: .3s;
+        font-family: "Quicksand", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-size: 1.5rem;
     }
     & a:hover{
-        color: royalblue;
+        color: #cd770d;
+        transform: scale(1.05);
     }
 }
 
@@ -43,20 +67,25 @@ html, *{
     flex-grow: 1;
     justify-content: end;
     align-items: center;
-    gap: 1vw;
-    padding-right: 1vw;
     height: 100%;
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
 }
 
 #buscador{
-    input{
-        height: 2vh;
+    & input{
+        height: 2.5vh;
+        width: 10vw;
+        border: 1px solid dimgrey;
     }
     & button{
         background: dimgrey;
         height: 3vh;
+        width: 4.5vw;
         transition: .3s;
-        border: 1px solid whitesmoke;
+        border: 1px solid dimgrey;
         color: white;
     }
     & button:hover{
@@ -74,11 +103,21 @@ html, *{
     align-items: center;
     gap: 4vh;
     padding-top: 3vh;
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    & h1{
+        font-family: "Ms Madi", cursive;
+        font-weight: bold;
+        font-style: normal;
+        font-size: 3rem;
+    }
     & form{
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        font-size: .9rem;
         & input{
             width: 10vw;
             height: 2vh;
@@ -93,6 +132,19 @@ html, *{
     justify-content: center;
     align-items: center;
     gap: 2vw;
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    & h1{
+        font-family: "Ms Madi", cursive;
+        font-weight: bold;
+        font-style: normal;
+        font-size: 3rem;
+    }
+    & form input{
+        width: 10vw;
+        height: 2vh;
+    }
 }
 
 #formulario-inicio-sesion{
@@ -112,9 +164,9 @@ html, *{
 #registro-usuario form, #formulario-inicio-sesion{
     & button{
         background: dimgrey;
-        border: 1px solid whitesmoke;
+        border: 1px solid dimgrey;
         height: 3.5vh;
-        width: 7vw;
+        width: 10.4vw;
         color: white;
         transition: .3s;
     }
@@ -136,23 +188,35 @@ html, *{
     justify-content: center;
     align-items: center;
     height: 60vh;
+    font-family: "Ms Madi", cursive;
+    font-weight: 350;
+    font-style: normal;
+    font-size: 3rem;
+    color: #302f2f;
+
 }
 
 #contenedor-tarjetas-categoria{
-    width: 40%;
+    width: 50%;
     height: 40vh;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+
     & a{
+        height: 32vh;
         text-decoration: none;
         color: black;
+        font-family: "Nunito", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 300;
+        font-size: 1.5rem;
     }
 }
 
 .tarjeta-categoria{
-    height: 26vh;
-    width: 25%;
+    height: 30vh;
+    width: 30%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -176,16 +240,27 @@ html, *{
     flex-direction: column;
     align-items: center;
     height: 70vh;
-    padding-top: 4vh;
-
+    padding-top: 1.5vh;
+    & h1{
+        font-family: "Ms Madi", cursive;
+        font-weight: bold;
+        font-style: normal;
+        font-size: 3.5rem;
+        color: #302f2f;
+    }
     & a{
         text-decoration: none;
         color: black;
         transition: .3s;
+        font-family: "Nunito", sans-serif;
+        font-optical-sizing: auto;
+        font-style: normal;
+        font-size: .9rem;
     }
 
     & a:hover{
         color: royalblue;
+        transform: scale(1.1);
     }
 
     & #muebles{
@@ -194,13 +269,13 @@ html, *{
         flex-wrap: wrap;
         align-items: center;
         text-align: center;
-        width: 52%;
+        width: 58%;
         height: 60vh;
-        margin: .5cm;
-        gap: 1vw;
+        gap: 0.8vw;
 
         & .mueble{
             width: 20%;
+            height: 30vh;
             transition: .3s;
             border: 1px solid whitesmoke;
             & a{
@@ -208,7 +283,7 @@ html, *{
                 color: black;
             }
             & p{
-                margin: .5vh 0;
+                margin: .15vh 0;
             }
         }
         & .mueble:hover{
@@ -219,6 +294,10 @@ html, *{
             }
         }
     }
+    & #volver{
+        padding-top: 4vh;
+        font-size: 1.2rem;
+    }
 }
 
 #detalles-muebles{
@@ -226,7 +305,13 @@ html, *{
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding-top: 3vh;
+    padding-top: 1vh;
+    & h1{
+        font-family: "Ms Madi", cursive;
+        font-weight: bold;
+        font-style: normal;
+        font-size: 3rem;
+    }
 }
 
 #detalle-mueble-seleccion{
@@ -239,6 +324,10 @@ html, *{
     width: 14%;
     height: 31vh;
     padding-top: 2vh;
+    padding-bottom: 2vh;
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
 
     & button{
         background-color: dimgray;
@@ -248,6 +337,11 @@ html, *{
         width: 11.5vw;
         transition: .3s;
         color: white;
+        font-family: "Nunito", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 1rem;
     }
     & button:hover{
         background-color: white;
@@ -263,26 +357,32 @@ html, *{
     align-items: center;
     text-align: center;
     margin-top: 1vh;
-    width: 30%;
-    height: 28vh;
+    width: 60%;
+    height: 30vh;
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
 
     & h2{
         margin-bottom: 2vh;
+        color: black;
+        font-weight: 400;
     }
 
     & #recomendaciones-similares{
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 1vw;
+        gap: .5vw;
         width: 100%;
+        font-size: 1rem;
 
         & .recomendacion{
-            width: 10vw;
+            width: 12vw;
+            height: 25vh;
             display: flex;
             flex-direction: column;
             gap: .5vh;
-            border: 1px solid whitesmoke;
 
             & button{
                 background: dimgray;
@@ -292,6 +392,9 @@ html, *{
                 height: 3vh;
                 width: 13vh;
                 transition: .3s;
+                font-family: "Nunito", sans-serif;
+                font-optical-sizing: auto;
+                font-style: normal;
             }
             & button:hover{
                 color: black;
@@ -306,16 +409,23 @@ html, *{
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-top: 1vh;
     height: 3vh;
     width: 100vw;
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
 
     & a{
         text-decoration: none;
         color: black;
         transition: .3s;
+        font-size: 1.2rem;
+        padding-top: 1.5vh;
     }
     & a:hover{
         color: royalblue;
+        transform: scale(1.1);
     }
 }
 
@@ -326,11 +436,20 @@ html, *{
     align-items: center;
     padding-top: 4vh;
     height: 74vh;
+    font-family: "Ms Madi", cursive;
+    font-weight: 350;
+    font-style: normal;
+    font-size: 3rem;
+    color: #302f2f;
 
     & #tabla-carrito{
         margin: 3vh 0 1vh 0;
         text-align: center;
         width: 40%;
+        font-family: "Nunito", sans-serif;
+        font-optical-sizing: auto;
+        font-style: normal;
+        font-size: 1rem;
 
         & a{
             text-decoration: none;
@@ -346,6 +465,13 @@ html, *{
         }
     }
 
+    & p, button, a{
+        font-family: "Nunito", sans-serif;
+        font-optical-sizing: auto;
+        font-style: normal;
+        font-size: 1.1rem;
+    }
+
     & a, button{
         margin: 2vh;
         text-decoration: none;
@@ -353,18 +479,21 @@ html, *{
     }
     & a{
         transition: .3s;
+        font-size: 1.1rem;
     }
     & a:hover{
         color: royalblue;
+        transform: scale(1.1);
     }
 
     & button{
-        height: 3vh;
-        width: 5vw;
+        height: 4vh;
+        width: 7vw;
         transition: .3s;
         border: 1px solid whitesmoke;
         background-color: dimgrey;
         color: white;
+        font-size: 1rem;
     }
     & button:hover{
         background-color: white;
@@ -381,11 +510,30 @@ html, *{
     align-items: center;
     padding-top: 5vh;
     gap: 1vh;
+    font-family: "Ms Madi", cursive;
+    font-weight: 350;
+    font-style: normal;
+    font-size: 2.5rem;
+    color: #302f2f;
+    & pre, p{
+        font-size: 1rem;
+        font-family: "Nunito", sans-serif;
+        font-optical-sizing: auto;
+        font-style: normal;
+    }
 }
 
 #resultados-busqueda{
     height: 70vh;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    & a{
+        text-decoration: none;
+        color: black;
+    }
 }
 
 #productos{
@@ -394,9 +542,10 @@ html, *{
     justify-content: space-evenly;
     align-items: center;
     height: 66vh;
+    width: 50%;
 
     & .producto{
-        width: 20%;
+        width: 22%;
         height: 30vh;
         display: flex;
         flex-direction: column;
@@ -407,9 +556,15 @@ html, *{
 }
 #mensaje{
     text-align: center;
-    height: 6vh;
+    height: 4vh;
     background: whitesmoke;
     padding-top: 6vh;
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-size: 1.1rem;
+    font-style: normal;
+    color: #cd770d;
 }
 #footer{
     height: 5vh;

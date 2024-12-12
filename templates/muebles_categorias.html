@@ -1,4 +1,4 @@
-{% extends 'home.html' %}
+{% extends 'base.html' %}
 {% block content %}
     <section id="contenido-muebles-categoria">
         <h1>{{ categoria|safe }}</h1>
@@ -13,6 +13,6 @@
             </div>
             {% endfor %}
         </div>
-        <a href="{% url 'listar_categorias' %}">Volver</a>
+        <a href="{% url 'listar_categorias' %}" id="volver">Volver</a>
     </section>
 {% endblock %}

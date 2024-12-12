@@ -1,14 +1,15 @@
-{% extends 'home.html' %}
+{% extends 'base.html' %}
 {% block content %}
+    {% load static %}
     <section id="contenido-categorias">
         <h1>Categorías de Muebles</h1>
-            <div id="contenedor-tarjetas-categoria">
-                {% for categoria in categorias %}
-                    <a class="tarjeta-categoria" href="{% url 'listar_muebles_por_categoria' categoria %}">
-                        <img src="https://via.placeholder.com/180" width="100%">
-                        <p>{{ categoria }}</p>
-                    </a>
-                {% endfor %}
-            </div>
+        <div id="contenedor-tarjetas-categoria">
+            {% for categoria in categorias %}
+                <a class="tarjeta-categoria" href="{% url 'listar_muebles_por_categoria' categoria.nombre %}">
+                    <img src="{% static 'imagenes/categoria-'|add:categoria.nombre|lower %}.jpg" width="100%">
+                    <p>{{ categoria.nombre }}</p>
+                </a>
+            {% endfor %}
+        </div>
     </section>
 {% endblock %}

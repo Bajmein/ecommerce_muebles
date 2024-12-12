@@ -1,4 +1,4 @@
-{% extends 'home.html' %}
+{% extends 'base.html' %}
 {% block content %}
     <div id="detalles-muebles">
         <h1>{{ mueble.nombre }}</h1>
@@ -20,6 +20,7 @@
                         <a href="{% url 'detalle_mueble_por_categoria' categoria similar.mueble.nombre %}">
                             <img src="{{ similar.mueble.imagen }}" alt="{{ similar.mueble.nombre }}" width="120">
                         </a>
+                        <p>{{ similar.mueble.nombre }}</p>
                         <p>Precio: ${{ similar.mueble.precio }}</p>
                         
                         <form method="POST" action="{% url 'agregar_al_carrito' categoria similar.mueble.nombre %}">
