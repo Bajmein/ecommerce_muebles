@@ -112,7 +112,7 @@ def detalle_mueble_por_categoria(request, categoria, mueble_nombre):
     if not categoria_obj:
         return HttpResponse("Categoría no encontrada", status=404)
 
-    productos = Producto.objects.filter(categoria=categoria_obj)  # Asegúrate de manejar esto adecuadamente
+    productos = Producto.objects.filter(categoria=categoria_obj)
     mueble = productos.filter(nombre=mueble_nombre).first()
     if not mueble:
         return HttpResponse("Mueble no encontrado", status=404)
