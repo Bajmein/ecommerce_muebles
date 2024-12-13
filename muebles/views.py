@@ -6,7 +6,6 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-import numpy as np
 from .forms import RegistroForm
 from .models import Carrito, ItemCarrito, Compra, ItemCompra, Categoria, Producto
 
@@ -94,16 +93,15 @@ def buscar_muebles_similares(consulta, muebles, mueble_id=None, n_resultados=3):
     muebles_lista = list(muebles)
     vectorizador, matriz_tfidf = vectorizar_descripciones(muebles_lista)
     consulta_vectorizada = vectorizador.transform([consulta])
-    similitudes = cosine_similarity(consulta_vectorizada, matriz_tfidf)
-    indices_similares = np.argsort(similitudes[0])[-n_resultados:][::-1]
-    resultados = []
-    for i in indices_similares:
-        mueble = muebles_lista[i]
-        if mueble_id is not None and mueble.nombre == mueble_id:
-            continue
-        resultados.append({"mueble": mueble})
-        if len(resultados) == n_resultados:
-            break
+    similitudes = cosine_similarity(consulta_vectorizada, matriz_tfidf).flatten()
+
+    resultados = [
+        {"mueble": mueble, "similitud": round(similitud * 100, 2)}
+        for mueble, similitud in zip(muebles_lista, similitudes)
+        if mueble.id != mueble_id
+    ]
+
+    resultados = sorted(resultados, key=lambda x: x["similitud"], reverse=True)[:n_resultados]
     return resultados
 
 
@@ -112,12 +110,17 @@ def detalle_mueble_por_categoria(request, categoria, mueble_nombre):
     if not categoria_obj:
         return HttpResponse("Categoría no encontrada", status=404)
 
-    productos = Producto.objects.filter(categoria=categoria_obj)
-    mueble = productos.filter(nombre=mueble_nombre).first()
+    mueble = Producto.objects.filter(categoria=categoria_obj, nombre=mueble_nombre).first()
     if not mueble:
         return HttpResponse("Mueble no encontrado", status=404)
 
-    similares = buscar_muebles_similares(mueble.nombre, productos, mueble_id=mueble.id, n_resultados=4)
+    similares = buscar_muebles_similares(
+        consulta=mueble.descripcion or mueble.nombre,
+        muebles=Producto.objects.filter(categoria=categoria_obj),
+        mueble_id=mueble.id,
+        n_resultados=3
+    )
+
     return render(request, 'detalle_mueble_categoria.html', {
         'categoria': categoria,
         'mueble': mueble,

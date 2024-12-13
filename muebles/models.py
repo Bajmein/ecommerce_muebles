@@ -23,7 +23,6 @@ class Producto(models.Model):
         return self.nombre
 
 
-
 class Carrito(models.Model):
     usuario = models.OneToOneField(User, on_delete=models.CASCADE, related_name='carrito')
 
@@ -33,7 +32,7 @@ class Carrito(models.Model):
 
 class ItemCarrito(models.Model):
     carrito = models.ForeignKey(Carrito, on_delete=models.CASCADE, related_name='items')
-    producto = models.ForeignKey(Producto, on_delete=models.CASCADE, related_name='items_carrito')  #
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE, related_name='items_carrito')
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     cantidad = models.PositiveIntegerField(default=1)
     imagen = models.URLField()

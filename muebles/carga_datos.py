@@ -53,18 +53,15 @@ ADJETIVOS = ["clasico", "moderno", "rustico", "elegante", "versatil", "sofistica
 
 def cargar_datos():
     for categoria_nombre, productos in CATEGORIAS.items():
-        # Crear o obtener la categoría
         categoria, _ = Categoria.objects.get_or_create(
             nombre=categoria_nombre,
             defaults={"descripcion": f"Productos de la categoría {categoria_nombre.lower()}."}
         )
 
         for producto in productos:
-            # Generar descripción aleatoria
             adjetivo = ADJETIVOS[len(producto["nombre"]) % len(ADJETIVOS)]
             descripcion = DESCRIPCION_TEMPLATE.format(adjetivo=adjetivo)
 
-            # Crear el producto
             Producto.objects.get_or_create(
                 nombre=producto["nombre"],
                 defaults={
