@@ -8,7 +8,7 @@
                 <a href="{% url 'detalle_mueble_por_categoria' categoria mueble.nombre %}">
                     <img src="{{ mueble.imagen }}" alt="{{ mueble.nombre|safe }}" width="100%">
                     <p>{{ mueble.nombre|safe }}</p>
-                    <p>Precio: ${{ mueble.precio }}</p>
+                    <p>Precio: <strong>${{ mueble.precio }}</strong></p>
                 </a>
             </div>
             {% endfor %}

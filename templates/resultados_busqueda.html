@@ -7,10 +7,10 @@
             {% for resultado in resultados %}
                 <div class="producto">
                     <a href="{% url 'detalle_mueble_por_categoria' resultado.categoria resultado.nombre %}">
-                        <img src="{{ resultado.imagen }}" alt="{{ resultado.nombre|safe }}" width="150">
-                        <p>{{ resultado.nombre|safe }}</p>
+                        <img src="{{ resultado.imagen }}" alt="{{ resultado.nombre }}" width="180">
+                        <p>{{ resultado.nombre }}</p>
+                        <p>Precio: <strong>${{ resultado.precio }}</strong></p>
                     </a>
-                    <p>Precio: ${{ resultado.precio }}</p>
                 </div>
             {% endfor %}
         </div>

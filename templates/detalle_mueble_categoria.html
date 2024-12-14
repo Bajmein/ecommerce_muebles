@@ -4,7 +4,7 @@
         <h1>{{ mueble.nombre }}</h1>
         <div id="detalle-mueble-seleccion">
             <img src="{{ mueble.imagen }}" alt="{{ mueble.nombre }}" width="220">
-            <p>Precio: ${{ mueble.precio }}</p>
+            <p>Precio: <strong>${{ mueble.precio }}</strong></p>
     
             <form method="POST" action="{% url 'agregar_al_carrito' categoria mueble.nombre %}">
                 {% csrf_token %}
@@ -21,7 +21,7 @@
                             <img src="{{ similar.mueble.imagen }}" alt="{{ similar.mueble.nombre }}" width="120">
                         </a>
                         <p>{{ similar.mueble.nombre }}</p>
-                        <p>Precio: ${{ similar.mueble.precio }}</p>
+                        <p>Precio: <strong>${{ similar.mueble.precio }}</strong></p>
                         
                         <form method="POST" action="{% url 'agregar_al_carrito' categoria similar.mueble.nombre %}">
                             {% csrf_token %}
